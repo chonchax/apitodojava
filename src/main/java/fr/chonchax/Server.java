@@ -8,13 +8,14 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 public class Server {
-    public static void main(String[] args) {
+
+    public void start() {
         try {
-            HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+            HttpServer server = HttpServer.create(new InetSocketAddress(8082), 0);
             server.createContext("/", new ApiTodoHandler());
             server.start();
 
-            System.out.println("J'ai démarré le serveur sur http://localhost:8080");
+            System.out.println("J'ai démarré le serveur sur http://localhost:8081");
         } catch (IOException e) {
             e.printStackTrace();
         }
