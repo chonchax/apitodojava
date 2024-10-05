@@ -1,21 +1,25 @@
 package fr.chonchax;
+
 import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    static Dotenv dotenv = Dotenv.load();
-    
-    static String url = dotenv.get("DB_URL");
-    static String user = dotenv.get("DB_USER");
-    static String password = dotenv.get("DB_PASSWORD");
-    Connection con;
+    private Dotenv dotenv;
+    private String url;
+    private String user;
+    private String password;
+    private Connection con;
 
     public Database() throws SQLException {
+        this.dotenv = Dotenv.load();
+        this.url = dotenv.get("DB_URL");
+        this.user = dotenv.get("DB_USER");
+        this.password = dotenv.get("DB_PASSWORD");
+
         try {
-        this.con = DriverManager.getConnection(url, user, password);   
-        System.out.println("J'ai connecté la db a mon app"); 
+            this.con = DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new SQLException("Erreur lors de la connexion à la db", e);
         }
