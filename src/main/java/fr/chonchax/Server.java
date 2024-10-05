@@ -11,6 +11,8 @@ public class Server {
             HttpServer server = HttpServer.create(new InetSocketAddress(8082), 0);
 
             server.createContext("/", new ApiTodoHandler());
+            server.createContext("/users", new UserHandler()); 
+            server.createContext("/todos", new TodoHandler());   
             server.start();
 
             System.out.println("J'ai démarré le serveur sur http://localhost:8081");
